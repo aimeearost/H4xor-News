@@ -18,12 +18,11 @@ struct ContentView: View {
             List(networkManager.posts){ post in
                 NavigationLink(destination: DetailView(url: post.url)) {
                     HStack {
-                        Text(String(post.points))
                         Text(post.title)
                     }
                 }
             }
-            .navigationBarTitle("H4XOR NEWS")
+            .navigationBarTitle("NEWS")
             
         }
         //        Every content view has onAppear like viewdidload

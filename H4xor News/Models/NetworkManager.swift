@@ -15,7 +15,7 @@ class NetworkManager: ObservableObject {
     @Published var posts = [Post]()
     
     func fetchData() {
-        if let url = URL(string: "https://hn.algolia.com/api/v1/search?tags=front_page") {
+        if let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=8e28babb2a8e4a4a91a9890b14ee915a") {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error == nil {
@@ -28,7 +28,7 @@ class NetworkManager: ObservableObject {
                             
                             DispatchQueue.main.async {
                                 //                            This now has all of the posts/hits objects so next need to publish posts to any interested parties, which we do using the property wrapper @Published = up above in the var posts.
-                                self.posts = results.hits
+                                self.posts = results.articles
                             }
                         } catch {
                             print(error)
